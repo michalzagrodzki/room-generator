@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2D Room Generator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="controls">
+        <h2>2D Connected Room Generator</h2>
+        <div class="input-group">
+          <label for="canvasWidth">Canvas Width:</label>
+          <input type="number" id="canvasWidth" value="60" min="20" max="120" />
+        </div>
+        <div class="input-group">
+          <label for="canvasHeight">Canvas Height:</label>
+          <input type="number" id="canvasHeight" value="40" min="20" max="80" />
+        </div>
+        <div class="input-group">
+          <label for="roomCount">Room Count:</label>
+          <input type="number" id="roomCount" value="8" min="3" max="15" />
+        </div>
+        <div class="input-group">
+          <label for="minRoomSize">Min Room Size:</label>
+          <input type="number" id="minRoomSize" value="4" min="3" max="10" />
+        </div>
+        <div class="input-group">
+          <label for="maxRoomSize">Max Room Size:</label>
+          <input type="number" id="maxRoomSize" value="12" min="6" max="20" />
+        </div>
+        <button class="generate-btn" onclick="app.generateRooms()">
+          Generate Rooms
+        </button>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="roomCanvas"></canvas>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #2196f3"></div>
+            <span>Wall Border</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #f5f5f5"></div>
+            <span>Empty Space</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #333"></div>
+            <span>Grid Lines</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load modules -->
+    <script type="module" src="js/Rectangle.js"></script>
+    <script type="module" src="js/RoomRenderer.js"></script>
+    <script type="module" src="js/RoomGenerator.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

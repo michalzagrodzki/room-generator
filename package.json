@@ -1,0 +1,21 @@
+{
+  "name": "2d-room-generator",
+  "version": "1.0.0",
+  "description": "A 2D side-scrolling room generator with rectangular shapes",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src --port=7000 --open=/index.html",
+    "dev": "live-server src --port=7000 --open=/index.html --watch=src",
+    "build": "echo 'Build complete - static files ready for deployment'",
+    "serve": "live-server src --port=9080"
+  },
+  "keywords": ["2d", "room", "generator", "game", "canvas"],
+  "author": "Michal Zagrodzki",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
