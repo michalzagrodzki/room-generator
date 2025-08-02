@@ -1,17 +1,35 @@
 import { RoomGenerator } from './RoomGenerator.js';
 import { RoomRenderer } from './RoomRenderer.js';
+import { RoomExporter } from './RoomExporter.js';
 
 // Application class
 class RoomGeneratorApp {
     constructor() {
         this.renderer = null;
         this.generator = null;
+        this.exporter = null;
+        this.currentGrid = null;
     }
     
     init() {
         this.renderer = new RoomRenderer('roomCanvas');
-        this.generateRooms(); // Generate initial rooms
+        this.exporter = new RoomExporter();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+        
+        // Generate initial rooms
+        this.generateRooms();
+        
         console.log('Room Generator App initialized');
+    }
+    
+    setupEventListeners() {
+        const generateBtn = document.getElementById('generateBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        
+        generateBtn.addEventListener('click', () => this.generateRooms());
+        exportBtn.addEventListener('click', () => this.exportToJson());
     }
     
     generateRooms() {
@@ -28,9 +46,13 @@ class RoomGeneratorApp {
         }
         
         this.generator = new RoomGenerator(canvasWidth, canvasHeight);
-        const grid = this.generator.generateRooms(roomCount, minRoomSize, maxRoomSize);
+        this.currentGrid = this.generator.generateRooms(roomCount, minRoomSize, maxRoomSize);
         
-        this.renderer.render(grid);
+        this.renderer.render(this.currentGrid);
+        
+        // Enable export button
+        const exportBtn = document.getElementById('exportBtn');
+        exportBtn.disabled = false;
         
         // Display stats
         const stats = this.generator.getRoomStats();
@@ -44,12 +66,30 @@ class RoomGeneratorApp {
             <strong>Stats:</strong> ${stats.totalRooms} rooms, ${stats.overlappingPairs} overlaps, Connected: ${stats.allConnected ? '✅ Yes' : '❌ No'}
         `;
     }
+    
+    exportToJson() {
+        if (!this.currentGrid || !this.generator) {
+            alert('Please generate a room layout first!');
+            return;
+        }
+        
+        try {
+            // Export to LDtk format
+            const ldtkData = this.exporter.exportToLDtkFormat(this.currentGrid, this.generator);
+            
+            // Open in new window for viewing
+            this.exporter.openJsonInNewWindow(ldtkData);
+            
+            console.log('Room layout exported to JSON:', ldtkData);
+        } catch (error) {
+            console.error('Export failed:', error);
+            alert('Failed to export room layout. Check console for details.');
+        }
+    }
 }
 
-// Global app instance
-window.app = new RoomGeneratorApp();
-
-// Initialize when page loads
+// Initialize app when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    window.app.init();
+    const app = new RoomGeneratorApp();
+    app.init();
 });

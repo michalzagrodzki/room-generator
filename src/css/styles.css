@@ -77,6 +77,34 @@ body {
   box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
 }
 
+.export-btn {
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 15px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+.export-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #388E3C, #2E7D32);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.export-btn:disabled {
+  background: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 .canvas-container {
   background: white;
   padding: 25px;
