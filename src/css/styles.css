@@ -57,6 +57,13 @@ body {
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
 
+.pixel-label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
 .generate-btn {
   background: linear-gradient(135deg, #2196F3, #1976D2);
   color: white;

@@ -30,6 +30,53 @@ class RoomGeneratorApp {
         
         generateBtn.addEventListener('click', () => this.generateRooms());
         exportBtn.addEventListener('click', () => this.exportToJson());
+        
+        // Set up pixel label updates
+        this.setupPixelLabels();
+    }
+    
+    setupPixelLabels() {
+        const TILE_SIZE = 16;
+        
+        // Canvas width
+        const canvasWidthInput = document.getElementById('canvasWidth');
+        const widthPixelsLabel = document.getElementById('widthPixels');
+        
+        canvasWidthInput.addEventListener('input', (e) => {
+            const cells = parseInt(e.target.value) || 0;
+            const pixels = cells * TILE_SIZE;
+            widthPixelsLabel.textContent = `${cells} cells / ${pixels}px`;
+        });
+        
+        // Canvas height
+        const canvasHeightInput = document.getElementById('canvasHeight');
+        const heightPixelsLabel = document.getElementById('heightPixels');
+        
+        canvasHeightInput.addEventListener('input', (e) => {
+            const cells = parseInt(e.target.value) || 0;
+            const pixels = cells * TILE_SIZE;
+            heightPixelsLabel.textContent = `${cells} cells / ${pixels}px`;
+        });
+        
+        // Min room size
+        const minRoomSizeInput = document.getElementById('minRoomSize');
+        const minRoomPixelsLabel = document.getElementById('minRoomPixels');
+        
+        minRoomSizeInput.addEventListener('input', (e) => {
+            const cells = parseInt(e.target.value) || 0;
+            const pixels = cells * TILE_SIZE;
+            minRoomPixelsLabel.textContent = `${cells} cells / ${pixels}px`;
+        });
+        
+        // Max room size
+        const maxRoomSizeInput = document.getElementById('maxRoomSize');
+        const maxRoomPixelsLabel = document.getElementById('maxRoomPixels');
+        
+        maxRoomSizeInput.addEventListener('input', (e) => {
+            const cells = parseInt(e.target.value) || 0;
+            const pixels = cells * TILE_SIZE;
+            maxRoomPixelsLabel.textContent = `${cells} cells / ${pixels}px`;
+        });
     }
     
     generateRooms() {
